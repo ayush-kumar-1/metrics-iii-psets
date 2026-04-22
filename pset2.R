@@ -4,7 +4,6 @@ library(xgboost)
 
 bmi = read_delim("../nhanes_bmi.csv", delim = ";", show_col_types = FALSE) %>%
   select(-"...1")
-head(bmi)
 
 covariates = c(
   "age",
@@ -24,6 +23,7 @@ outcome_formula = reformulate(covariates, response = "BMI")
 
 # (a) naive difference in mean estimator
 
+cat("difference-in-means estimator")
 feols(BMI ~ School_meal, data = bmi) %>% summary()
 
 # (b) regression adjustment estimator
